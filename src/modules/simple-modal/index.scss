@@ -1,0 +1,17 @@
+.simple-modal {
+  $show: #{&}--show;
+
+  z-index: -1;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s step-end, z-index 0.5s step-end, opacity 0.5s linear;
+  pointer-events: none;
+
+  &#{$show} {
+    z-index: 30;
+    visibility: visible;
+    opacity: 100;
+    transition: visibility 0.5s step-start, z-index 0.5s step-start, opacity 0.5s linear;
+    pointer-events: auto;
+  }
+}

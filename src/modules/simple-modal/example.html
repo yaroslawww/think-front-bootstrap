@@ -1,0 +1,30 @@
+<div data-simple-modal-trigger="#my-search-filter" class="...">
+    Filter
+</div>
+
+
+<section id="my-search-filter"
+         class="simple-modal py-8 md:py-16 px-4 cursor-default fixed top-0 left-0 w-full h-full overflow-x-hidden overflow-y-auto bg-black bg-opacity-75">
+    <div class="simple-modal__content bg-white relative w-full max-w-2xl mx-auto h-full flex flex-col">
+        <header class="p-4 md:p-6 border-b border-black flex justify-center items-center relative">
+            <div class="text-xl md:text-2xl font-judson text-black">
+                Title
+            </div>
+            <div class="pr-4 md:pr-6 absolute top-0 right-0 h-full flex items-center">
+                <div class="cursor-pointer text-black transition-all duration-500 block">
+                   <span class="simple-modal__trigger">
+                       Close
+                   </span>
+                </div>
+            </div>
+        </header>
+        <main class="flex-grow p-6 md:p-8 overflow-auto">
+            Content
+        </main>
+        <footer class="p-4 md:p-6 border-t border-black ">
+            <button class="outline-none focus:outline-none text-white bg-black h-16 w-full flex justify-center items-center">
+                View results
+            </button>
+        </footer>
+    </div>
+</section>
