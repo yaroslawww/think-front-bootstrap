@@ -2,6 +2,7 @@
   $self: &;
   $loading: #{$self}--loading;
   $allShowed: #{$self}--all-showed;
+  $empty: #{$self}--empty;
 
   &__list {
     @apply relative;
@@ -16,7 +17,19 @@
         @apply opacity-100 pointer-events-auto;
       }
     }
+
+    #{$empty} & {
+      @apply hidden;
+    }
   }
+
+  &__empty {
+    @apply hidden;
+    #{$empty} & {
+      @apply flex;
+    }
+  }
+
   &__trigger {
     @apply relative;
     &:after {

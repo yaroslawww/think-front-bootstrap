@@ -1,7 +1,7 @@
 {
   "name": "think-front-bootstrap",
   "description": "Simple batch of predefined scripts and styles.",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "license": "ISC",
   "scripts": {
     "lint": "eslint src"

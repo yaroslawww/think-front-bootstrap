@@ -29,19 +29,34 @@ class ThinkLoadMore {
   hideTriggers() {
     this.boxEl.classList.add(`${this.classPrefix}--all-showed`);
     if (this.params.onHideTriggers) {
-      this.params.onHideTriggers(this.boxEl, document.querySelectorAll(`.${this.classPrefix}__trigger`));
+      this.params.onHideTriggers(this);
     }
   }
 
   showTriggers() {
     this.boxEl.classList.remove(`${this.classPrefix}--all-showed`);
     if (this.params.onShowTriggers) {
-      this.params.onShowTriggers(this.boxEl, document.querySelectorAll(`.${this.classPrefix}__trigger`));
+      this.params.onShowTriggers(this);
     }
   }
 
   isLoading() {
     return this.boxEl.classList.contains(`${this.classPrefix}--loading`);
+  }
+
+  setStatusEmpty() {
+    this.listEl.innerHTML = '';
+    this.boxEl.classList.add(`${this.classPrefix}--empty`);
+    if (this.params.onSetStatusEmpty) {
+      this.params.onSetStatusEmpty(this);
+    }
+  }
+
+  setStatusNotEmpty() {
+    this.boxEl.classList.remove(`${this.classPrefix}--empty`);
+    if (this.params.onSetStatusNotEmpty) {
+      this.params.onSetStatusNotEmpty(this);
+    }
   }
 
   loadMore(hardParams = {}) {
@@ -74,20 +89,25 @@ class ThinkLoadMore {
     wpRequest.ajaxPost(searchData)
       .then((response) => {
         if (response.data && response.data.success
-                    && response.data.data
+          && response.data.data
         ) {
           let { data } = response.data;
           if (this.params.filterResponseData) {
             data = this.params.filterResponseData(data);
           }
-          if (data.currentPage) {
+          if (Object.prototype.hasOwnProperty.call(data, 'currentPage')) {
             this.boxEl.setAttribute('data-tlmore-page', data.currentPage);
           }
+          if (Object.prototype.hasOwnProperty.call(data, 'totalCount')) {
+            if (data.totalCount <= 0) {
+              this.setStatusEmpty();
+            } else {
+              this.setStatusNotEmpty();
+            }
+          }
 
-          if (Object.prototype.hasOwnProperty.call(data, 'items')) {
-            if (data.items.length <= 0) {
-              this.listEl.innerHTML = '';
-            } else if (data.currentPage && data.currentPage <= paged) {
+          if (Object.prototype.hasOwnProperty.call(data, 'items') && data.items.length > 0) {
+            if (data.currentPage && data.currentPage <= paged) {
               this.listEl.innerHTML = data.items;
             } else {
               this.listEl.innerHTML += data.items;
