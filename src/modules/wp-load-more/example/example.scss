@@ -1,0 +1,49 @@
+.load-more-box {
+  $self: &;
+  $loading: #{$self}--loading;
+  $allShowed: #{$self}--all-showed;
+
+  &__list {
+    @apply relative;
+    &:after {
+      content: '';
+      @apply block absolute top-0 left-0 w-full h-full bg-beige bg-opacity-50 cursor-not-allowed opacity-0 pointer-events-none transition-all duration-500;
+    }
+    #{$loading} & {
+      @apply pointer-events-none;
+      &:after {
+        content: '';
+        @apply opacity-100 pointer-events-auto;
+      }
+    }
+  }
+  &__trigger {
+    @apply relative;
+    &:after {
+      @apply box-border block absolute bottom-0 left-0 h-1 bg-example-light opacity-0;
+      animation-name: width\:0-100;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+    #{$loading} & {
+      @apply opacity-90 pointer-events-none;
+      &:after {
+        content: '';
+        @apply opacity-100;
+        animation-name: width\:0-90;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+    }
+    #{$allShowed} & {
+      @apply hidden;
+    }
+  }
+}
+
+@keyframes width\:0-90 {
+  from {width: 0;}
+  to {width: 90%}
+}
