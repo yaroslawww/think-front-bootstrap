@@ -1,0 +1,9 @@
+.font-selector {
+  $self: &;
+
+  &__option {
+    &#{$self}--option-active {
+      //
+    }
+  }
+}

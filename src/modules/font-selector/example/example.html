@@ -1,0 +1,35 @@
+<div class="font-selector select-none cursor-pointer text-example hover:text-example-dark transition-all relative flex items-center space-x-1">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+       class="pointer-events-none w-5 h-5">
+    <path fill="currentColor"
+          d="M624 160h-16a16 16 0 0 0-16 16v12.82C570 171.07 542.44 160 512 160a128 128 0 0 0-128 128v32a128 128 0 0 0 128 128c30.44 0 58-11.07 80-28.82V432a16 16 0 0 0 16 16h16a16 16 0 0 0 16-16V176a16 16 0 0 0-16-16zm-32 160a80 80 0 0 1-160 0v-32a80 80 0 0 1 160 0zM212.5 74.35a16 16 0 0 0-15-10.35h-43.03a16 16 0 0 0-15 10.35L1 426.35A16 16 0 0 0 16 448h17.14a16 16 0 0 0 15-10.35L88.22 336h175.56l40.11 101.65a16 16 0 0 0 15 10.35H336a16 16 0 0 0 15-21.65zM107.16 288L176 113.58 244.84 288z"
+          class=""></path>
+  </svg>
+  <span class="pointer-events-none">Text size</span>
+  <div class="font-selector__menu transform opacity-0 scale-95 pointer-events-none origin-top-right absolute right-0 mt-2  shadow-lg bg-white  focus:outline-none transition ease-out duration-100"
+       role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+    <div class="flex cursor-default space-x-4 p-4 text-example-dark" role="none">
+      <div class="font-selector__option cursor-pointer flex justify-center items-center p-4 border border-beige-second hover:border-example transition-all duration-500 w-20 h-20"
+      >
+        <div class="flex flex-col items-center justify-end">
+          <div class="text-base pointer-events-none">A</div>
+          <div class="mt-1 pointer-events-none">Small</div>
+        </div>
+      </div>
+      <div class="font-selector__option cursor-pointer flex justify-center items-center p-4 border border-beige-second hover:border-example transition-all duration-500 w-20 h-20"
+           data-font-class="medium">
+        <div class="flex flex-col items-center justify-end">
+          <div class="text-lg pointer-events-none">A</div>
+          <div class="mt-1 pointer-events-none">Medium</div>
+        </div>
+      </div>
+      <div class="font-selector__option cursor-pointer flex justify-center items-center p-4 border border-beige-second hover:border-example transition-all duration-500 w-20 h-20"
+           data-font-class="large">
+        <div class="flex flex-col items-center justify-end">
+          <div class="text-xl pointer-events-none">A</div>
+          <div class="mt-1 pointer-events-none">Large</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
