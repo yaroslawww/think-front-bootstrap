@@ -6,14 +6,19 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const hash = e.currentTarget.getAttribute('href');
         const target = document.querySelector(hash);
-        const headerOffset = 100;
-        const elementPosition = target.offsetTop;
-        const offsetPosition = elementPosition - headerOffset;
+        if (target) {
+          let headerOffset = parseInt(trigger.getAttribute('data-header-offset'), 10);
+          headerOffset = (Number.isNaN(headerOffset) ? 0 : headerOffset);
+          let elementPosition = parseInt(target.getBoundingClientRect().top, 10);
+          elementPosition = (Number.isNaN(elementPosition) ? 0 : elementPosition);
+          elementPosition += (window.pageYOffset || document.documentElement.scrollTop);
+          const offsetPosition = elementPosition - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }
       });
     });
 });
