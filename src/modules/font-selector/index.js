@@ -51,7 +51,7 @@ class FontSelector {
 
   toggleMenu(menuEl) {
     if (menuEl) {
-      if (menuEl.classList.contains(`.${this.classPrefix}--menu-open`)) {
+      if (menuEl.classList.contains(`${this.classPrefix}--menu-open`)) {
         this.closeMenu(menuEl);
       } else {
         this.openMenu(menuEl);
