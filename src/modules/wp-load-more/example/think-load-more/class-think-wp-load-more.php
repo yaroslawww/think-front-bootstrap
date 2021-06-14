@@ -27,11 +27,11 @@ abstract class Think_WP_Load_More {
    */
   public static function instance( array $args = [] ): Think_WP_Load_More {
     $cls = static::class;
-    if (!isset(self::$instances[$cls])) {
-      self::$instances[$cls] = new static();
+    if ( ! isset( self::$instances[ $cls ] ) ) {
+      self::$instances[ $cls ] = new static();
     }
 
-    return self::$instances[$cls];
+    return self::$instances[ $cls ];
   }
 
   /**
@@ -88,6 +88,7 @@ abstract class Think_WP_Load_More {
       $this->getQuery()->the_post();
       $data .= $this->loadItem();
     }
+    wp_reset_postdata();
 
     return $data;
   }
