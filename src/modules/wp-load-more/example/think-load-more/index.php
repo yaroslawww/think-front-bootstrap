@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/class-think-wp-load-more.php';
+require __DIR__ . '/class-think-wp-load-more-group.php';
 
 /**
  * Add ajax meta to use wp

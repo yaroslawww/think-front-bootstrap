@@ -21,11 +21,10 @@ abstract class Think_WP_Load_More {
   /**
    * Get singleton instance
    *
-   * @param array $args
    *
    * @return Think_WP_Load_More
    */
-  public static function instance( array $args = [] ): Think_WP_Load_More {
+  public static function instance( ): Think_WP_Load_More {
     $cls = static::class;
     if ( ! isset( self::$instances[ $cls ] ) ) {
       self::$instances[ $cls ] = new static();
@@ -36,12 +35,9 @@ abstract class Think_WP_Load_More {
 
   /**
    * Think_WP_Load_More constructor.
-   *
-   * @param array $args
    */
-  protected function __construct( array $args = [] ) {
+  protected function __construct( ) {
     $this->initialiseAjax();
-    $this->args = $args;
   }
 
   /**
@@ -154,17 +150,29 @@ abstract class Think_WP_Load_More {
    *
    */
   public function loadMore() {
+    $data = $this->loadResponseData();
+
+    wp_send_json_success( array_merge($data, [
+      'replaces'    => $this->getReplaces(),
+    ]) );
+  }
+
+  /**
+   * Generate response data.
+   *
+   * @return array
+   */
+  public function loadResponseData(): array {
     $this->args  = $this->regenerateArgs();
     $this->query = null;
 
-    wp_send_json_success( [
+    return  [
       'items'       => $this->getItemsView(),
       'currentPage' => $this->currentPage(),
       'totalCount'  => $this->totalCount(),
       'totalPages'  => $this->totalPages(),
       'hasNext'     => $this->hasNext(),
-      'replaces'    => $this->getReplaces(),
-    ] );
+    ];
   }
 
   /**
